@@ -244,7 +244,7 @@ public class MenuControllerEditor implements Initializable {
     }
 
     private static File[] getFnames(String rootDir, String ext){
-        Iterable<File> fileTraverser = Files.fileTreeTraverser().postOrderTraversal(new File(rootDir));
+        Iterable<File> fileTraverser = Files.fileTraverser().depthFirstPostOrder(new File(rootDir));
         
         Stream<File> filesStream = StreamSupport.stream(fileTraverser.spliterator(), false);
         

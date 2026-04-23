@@ -86,7 +86,7 @@ public class FieldEditorView {
     }
 
     public static void initCss(Scene scene) {
-        scene.getStylesheets().add(ClassLoader.getSystemResource("styles/modena-packet-editor.css").toExternalForm());
+        scene.getStylesheets().add(Thread.currentThread().getContextClassLoader().getResource("styles/modena-packet-editor.css").toExternalForm());
 
         Set<String> fontFamilies = javafx.scene.text.Font.getFamilies().stream().collect(Collectors.toSet());
 
@@ -104,10 +104,10 @@ public class FieldEditorView {
             fontsCssFile = "main-font-monospace.css";
         }
 
-        scene.getStylesheets().add(ClassLoader.getSystemResource("styles/" + fontsCssFile).toExternalForm());
+        scene.getStylesheets().add(Thread.currentThread().getContextClassLoader().getResource("styles/" + fontsCssFile).toExternalForm());
 
         if (System.getenv("DEBUG") == null) {
-            scene.getStylesheets().add(ClassLoader.getSystemResource("styles/main-narrow.css").toExternalForm());
+            scene.getStylesheets().add(Thread.currentThread().getContextClassLoader().getResource("styles/main-narrow.css").toExternalForm());
         } else {
             // use css from source file to utilize JavaFX css auto-reload
             String cssSource = "file://" + new File("src/main/resources/styles/main-narrow.css").getAbsolutePath();
